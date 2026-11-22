@@ -11,6 +11,7 @@ public record CustomUserDetails(SecurityUser user) implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return user.getRoles().stream()
+                .map(role -> role.startsWith("ROLE_") ? role : "ROLE_" + role)
                 .map(SimpleGrantedAuthority::new)
                 .toList();
     }
@@ -19,10 +20,13 @@ public record CustomUserDetails(SecurityUser user) implements UserDetails {
     public @Nullable String getPassword() {
         return user.getPassword();
     }
-
     @Override
     public String getUsername() {
         return user.getEmailAddress();
+    }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
     @Override
     public boolean isAccountNonLocked(){

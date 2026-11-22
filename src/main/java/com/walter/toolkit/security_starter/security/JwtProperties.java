@@ -4,7 +4,6 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.bind.DefaultValue;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.annotation.Validated;
 
 @Validated
@@ -16,7 +15,7 @@ public record JwtProperties(
     @DefaultValue("backend-toolkit")
     String issuer,
     @Min(value=60,message="jwt token expiration must at least be 60 seconds")
-    @DefaultValue("900")
+    @DefaultValue("3600")
     Long accessTokenExpiration,
     @Min(value=0,message="clock skew cannot be negative")
     @DefaultValue("30")

@@ -4,6 +4,7 @@ import com.walter.toolkit.security_starter.dto.AuthResponse;
 import com.walter.toolkit.security_starter.dto.LoginRequest;
 import com.walter.toolkit.security_starter.exception.ApiException;
 import com.walter.toolkit.security_starter.security.JwtService;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
@@ -14,7 +15,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 
-@Service
+
+
 public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
